@@ -11,9 +11,16 @@ class AdminHistoryPage extends StatefulWidget {
 class _AdminHistoryPageState extends State<AdminHistoryPage> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       body: Center(
-        child: Text("Tarix",style: TextStyle(color: Colors.white,fontSize: 40.sp),),
+        child: Text(
+          "Tarix",
+          style: TextStyle(
+            color: theme.appBarTheme.foregroundColor,
+            fontSize: 40.sp,
+          ),
+        ),
       ),
     );
   }

@@ -1,5 +1,4 @@
 enum UserRole {
-  CUSTOMER,
-  PROVIDER,
-  ADMIN,
+  BARBERSHOP,
+  HAIRDRESSERS,
 }

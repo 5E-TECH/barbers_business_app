@@ -23,10 +23,12 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textColor = theme.appBarTheme.foregroundColor;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: Padding(
-        padding: EdgeInsets.only(top: 12.h, right: 16.w,left: 16.w),
+        padding: EdgeInsets.only(top: 12.h, right: 16.w, left: 16.w),
         child: SingleChildScrollView(
           child: Column(
             spacing: 5,
@@ -50,57 +52,58 @@ class _SignUpPageState extends State<SignUpPage> {
                     style: TextStyle(
                       fontSize: 35,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: textColor,
                     ),
                   ),
                 ],
               ),
-              Text("Ism", style: TextStyle(color: Colors.white, fontSize: 15)),
+              Text("Ism", style: TextStyle(color: textColor, fontSize: 15)),
               TextFieldWidget(controller: _nameController),
               SizedBox(height: 1.h),
               Text(
                 "Familiya",
-                style: TextStyle(color: Colors.white, fontSize: 15),
+                style: TextStyle(color: textColor, fontSize: 15),
               ),
-          
+
               TextFieldWidget(controller: _lastnameController),
               SizedBox(height: 1.h),
-          
+
               Text(
                 "Faydalanuvchi nomi",
-                style: TextStyle(color: Colors.white, fontSize: 15),
+                style: TextStyle(color: textColor, fontSize: 15),
               ),
-          
+
               TextFieldWidget(controller: _userNameController),
               SizedBox(height: 1.h),
-          
+
               Text(
                 "Telefon raqam",
-                style: TextStyle(color: Colors.white, fontSize: 15),
+                style: TextStyle(color: textColor, fontSize: 15),
               ),
-          
+
               TextFieldWidget(
                 controller: _phoneController,
                 keyboardType: TextInputType.phone,
               ),
               SizedBox(height: 1.h),
-          
-              Text("Parol", style: TextStyle(color: Colors.white, fontSize: 15)),
-          
+
+              Text("Parol", style: TextStyle(color: textColor, fontSize: 15)),
+
               TextFieldWidget(controller: _passwordController, isPassword: true),
-              MyCustomCheckbox(),
+              const MyCustomCheckbox(),
               ElevatedButtonWidget(
                 onPressed: () {},
                 text: "Ro'yxatdan o'tish",
                 height: 40,
               ),
-              SizedBox(height: 5.h,),
+              SizedBox(height: 5.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   RichText(
                     text: TextSpan(
                       text: "Hisobingiz bormi ? ",
+                      style: TextStyle(color: textColor),
                       children: [
                         TextSpan(
                           recognizer: TapGestureRecognizer()
@@ -108,40 +111,40 @@ class _SignUpPageState extends State<SignUpPage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => SignInPage(),
+                                  builder: (context) => const SignInPage(),
                                 ),
                               );
                             },
                           text: "Kirish",
-                          style: TextStyle(color: AppColors.yellow),
+                          style: const TextStyle(color: AppColors.yellow),
                         ),
                       ],
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 5.h,),
+              SizedBox(height: 5.h),
               Row(
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsets.only(right: 25),
+                      padding: const EdgeInsets.only(right: 25),
                       child: Divider(color: Colors.grey, thickness: 1),
                     ),
                   ),
-                  Text(
+                  const Text(
                     "Yoki",
                     style: TextStyle(fontSize: 17, color: Colors.grey),
                   ),
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsets.only(left: 25),
+                      padding: const EdgeInsets.only(left: 25),
                       child: Divider(color: Colors.grey, thickness: 1),
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 5.h,),
+              SizedBox(height: 5.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 spacing: 8,

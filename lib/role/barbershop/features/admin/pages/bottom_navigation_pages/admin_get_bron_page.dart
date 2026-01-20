@@ -11,9 +11,16 @@ class AdminGetBronPage extends StatefulWidget {
 class _AdminGetBronPageState extends State<AdminGetBronPage> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       body: Center(
-        child: Text("BronOlish",style: TextStyle(color: Colors.white,fontSize: 40.sp),),
+        child: Text(
+          "Bron Olish",
+          style: TextStyle(
+            color: theme.appBarTheme.foregroundColor,
+            fontSize: 40.sp,
+          ),
+        ),
       ),
     );
   }

@@ -1,5 +1,5 @@
 import 'package:bar_brons_app/core/theme/app_colors.dart';
-import 'package:bar_brons_app/models/barber_shop_model.dart';
+import 'package:bar_brons_app/role/barbershop/models/barber_shop_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -12,6 +12,9 @@ class AdminHomePage extends StatefulWidget {
 
 class _AdminHomePageState extends State<AdminHomePage> {
   String selectedCategory = "Barbershoplar";
+
+  ThemeData get theme => Theme.of(context);
+  Color? get textColor => theme.appBarTheme.foregroundColor;
 
   final List<BarberShop> allBarberShops = [
     BarberShop(
@@ -111,18 +114,54 @@ class _AdminHomePageState extends State<AdminHomePage> {
         .toList();
   }
 
+  Widget _buildCategoryCard(String category, String title, String count) {
+    final isSelected = selectedCategory == category;
+    return GestureDetector(
+      onTap: () => setState(() => selectedCategory = category),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        padding: const EdgeInsets.only(left: 10),
+        decoration: BoxDecoration(
+          color: isSelected ? AppColors.yellow : theme.cardColor,
+          borderRadius: BorderRadius.circular(12),
+          border: isSelected ? Border.all(color: textColor ?? Colors.white, width: 2) : null,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text(
+              title,
+              style: TextStyle(
+                color: isSelected ? Colors.white : textColor,
+                fontSize: 20,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+              ),
+            ),
+            Text(
+              count,
+              style: TextStyle(
+                color: isSelected ? Colors.white : textColor,
+                fontSize: 20,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final filteredData = getFilteredData();
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.primary,
         title: Padding(
           padding: EdgeInsets.only(left: 16.w),
           child: Text(
             "Admin",
             style: TextStyle(
-              color: Colors.white,
               fontSize: 25.sp,
               fontWeight: FontWeight.bold,
             ),
@@ -140,10 +179,10 @@ class _AdminHomePageState extends State<AdminHomePage> {
                     borderRadius: BorderRadius.circular(6),
                   ),
                 ),
-                backgroundColor: WidgetStatePropertyAll(AppColors.yellow),
+                backgroundColor: const WidgetStatePropertyAll(AppColors.yellow),
               ),
               onPressed: () {},
-              icon: Icon(Icons.add),
+              icon: const Icon(Icons.add),
             ),
           ),
         ],
@@ -153,207 +192,27 @@ class _AdminHomePageState extends State<AdminHomePage> {
         child: Column(
           children: [
             GridView(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
                 childAspectRatio: 180 / 103,
               ),
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               children: [
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      selectedCategory = "Barbershoplar";
-                    });
-                  },
-                  child: AnimatedContainer(
-                    duration: Duration(milliseconds: 300),
-                    padding: EdgeInsets.only(left: 10),
-                    decoration: BoxDecoration(
-                      color: selectedCategory == "Barbershoplar"
-                          ? AppColors.yellow
-                          : AppColors.background,
-                      borderRadius: BorderRadius.circular(12),
-                      border: selectedCategory == "Barbershoplar"
-                          ? Border.all(color: Colors.white, width: 2)
-                          : null,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Text(
-                          "Barbershoplar",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: selectedCategory == "Barbershoplar"
-                                ? FontWeight.bold
-                                : FontWeight.normal,
-                          ),
-                        ),
-                        Text(
-                          "234",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: selectedCategory == "Barbershoplar"
-                                ? FontWeight.bold
-                                : FontWeight.normal,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      selectedCategory = "foydanaluvchilar";
-                    });
-                  },
-                  child: AnimatedContainer(
-                    duration: Duration(milliseconds: 300),
-                    padding: EdgeInsets.only(left: 10),
-                    decoration: BoxDecoration(
-                      color: selectedCategory == "foydanaluvchilar"
-                          ? AppColors.yellow
-                          : AppColors.background,
-                      borderRadius: BorderRadius.circular(12),
-                      border: selectedCategory == "foydanaluvchilar"
-                          ? Border.all(color: Colors.white, width: 2)
-                          : null,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Text(
-                          "Foydalanuvchilar",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: selectedCategory == "foydanaluvchilar"
-                                ? FontWeight.bold
-                                : FontWeight.normal,
-                          ),
-                        ),
-                        Text(
-                          "40",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: selectedCategory == "foydanaluvchilar"
-                                ? FontWeight.bold
-                                : FontWeight.normal,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      selectedCategory = "Statistika";
-                    });
-                  },
-                  child: AnimatedContainer(
-                    duration: Duration(milliseconds: 300),
-                    padding: EdgeInsets.only(left: 10),
-                    decoration: BoxDecoration(
-                      color: selectedCategory == "Statistika"
-                          ? AppColors.yellow
-                          : AppColors.background,
-                      borderRadius: BorderRadius.circular(12),
-                      border: selectedCategory == "Statistika"
-                          ? Border.all(color: Colors.white, width: 2)
-                          : null,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Text(
-                          "Statistika",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: selectedCategory == "Statistika"
-                                ? FontWeight.bold
-                                : FontWeight.normal,
-                          ),
-                        ),
-                        Text(
-                          "4.9",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: selectedCategory == "Statistika"
-                                ? FontWeight.bold
-                                : FontWeight.normal,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      selectedCategory = "Audit loglar";
-                    });
-                  },
-                  child: AnimatedContainer(
-                    duration: Duration(milliseconds: 300),
-                    padding: EdgeInsets.only(left: 10),
-                    decoration: BoxDecoration(
-                      color: selectedCategory == "Audit loglar"
-                          ? AppColors.yellow
-                          : AppColors.background,
-                      borderRadius: BorderRadius.circular(12),
-                      border: selectedCategory == "Audit loglar"
-                          ? Border.all(color: Colors.white, width: 2)
-                          : null,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Text(
-                          "Audit loglar",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: selectedCategory == "Audit loglar"
-                                ? FontWeight.bold
-                                : FontWeight.normal,
-                          ),
-                        ),
-                        Text(
-                          "234",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: selectedCategory == "Audit loglar"
-                                ? FontWeight.bold
-                                : FontWeight.normal,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                _buildCategoryCard("Barbershoplar", "Barbershoplar", "234"),
+                _buildCategoryCard("foydanaluvchilar", "Foydalanuvchilar", "40"),
+                _buildCategoryCard("Statistika", "Statistika", "4.9"),
+                _buildCategoryCard("Audit loglar", "Audit loglar", "234"),
               ],
             ),
             Expanded(
               child: AnimatedContainer(
-                duration: Duration(milliseconds: 300),
+                duration: const Duration(milliseconds: 300),
                 child: filteredData.isEmpty
                     ? Center(
-                        key: ValueKey("Empty"),
+                        key: const ValueKey("Empty"),
                         child: Text(
                           selectedCategory == "Statistika"
                               ? "Statistika ma'lumotlari"
@@ -361,7 +220,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                               ? "Audit loglar ma'lumotlari"
                               : "Malumotlar topilmadi",
                           style: TextStyle(
-                            color: Colors.white70,
+                            color: textColor?.withValues(alpha: 0.7),
                             fontSize: 18.sp,
                           ),
                         ),
@@ -375,7 +234,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                             margin: EdgeInsets.symmetric(vertical: 10.h),
                             padding: EdgeInsets.all(16.r),
                             decoration: BoxDecoration(
-                              color: AppColors.background,
+                              color: theme.cardColor,
                               borderRadius: BorderRadius.circular(12.r),
                             ),
                             child: Row(
@@ -383,13 +242,12 @@ class _AdminHomePageState extends State<AdminHomePage> {
                               children: [
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         shop.name,
                                         style: TextStyle(
-                                          color: Colors.white,
+                                          color: textColor,
                                           fontSize: 16.sp,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -400,32 +258,32 @@ class _AdminHomePageState extends State<AdminHomePage> {
                                           Text(
                                             shop.hours,
                                             style: TextStyle(
-                                              color: Colors.white70,
+                                              color: textColor?.withValues(alpha: 0.7),
                                               fontSize: 10.sp,
                                             ),
                                           ),
                                           Text(
                                             "  |  ",
                                             style: TextStyle(
-                                              color: Colors.white70,
+                                              color: textColor?.withValues(alpha: 0.7),
                                             ),
                                           ),
                                           Text(
                                             shop.address,
                                             style: TextStyle(
-                                              color: Colors.white70,
+                                              color: textColor?.withValues(alpha: 0.7),
                                             ),
                                           ),
                                           Text(
                                             "  |  ",
                                             style: TextStyle(
-                                              color: Colors.white70,
+                                              color: textColor?.withValues(alpha: 0.7),
                                             ),
                                           ),
                                           Text(
                                             shop.phone,
                                             style: TextStyle(
-                                              color: Colors.white70,
+                                              color: textColor?.withValues(alpha: 0.7),
                                               fontSize: 10.sp,
                                             ),
                                           ),
@@ -436,28 +294,28 @@ class _AdminHomePageState extends State<AdminHomePage> {
                                 ),
                                 PopupMenuTheme(
                                   data: PopupMenuThemeData(
-                                    color: AppColors.primary,
+                                    color: theme.cardColor,
                                     surfaceTintColor: Colors.transparent,
                                     shadowColor: Colors.grey,
                                   ),
                                   child: PopupMenuButton(
                                     icon: Icon(
                                       Icons.more_vert,
-                                      color: Colors.white,
+                                      color: textColor,
                                     ),
                                     itemBuilder: (context) => [
                                       PopupMenuItem(
                                         value: "edit",
                                         child: Text(
                                           "Tahrirlash",
-                                          style: TextStyle(color: Colors.white),
+                                          style: TextStyle(color: textColor),
                                         ),
                                       ),
                                       PopupMenuItem(
                                         value: "blocked",
                                         child: Text(
-                                          "bloclash",
-                                          style: TextStyle(color: Colors.white),
+                                          "Bloklash",
+                                          style: TextStyle(color: textColor),
                                         ),
                                       ),
                                     ],
