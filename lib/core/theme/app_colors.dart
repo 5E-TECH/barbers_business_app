@@ -15,11 +15,15 @@ class AppColors {
 class AppTheme {
   static final ThemeData light = ThemeData(
     brightness: Brightness.light,
-    fontFamily: 'inter',
+    fontFamily: 'Inter',
     primaryColor: AppColors.primaryLight,
     scaffoldBackgroundColor: AppColors.primaryLight,
     cardColor: AppColors.containerLight,
-    appBarTheme:  AppBarTheme(backgroundColor: Colors.white, foregroundColor: AppColors.primaryDark, scrolledUnderElevation: 0),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Colors.white,
+      foregroundColor: AppColors.primaryDark,
+      scrolledUnderElevation: 0,
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(backgroundColor: AppColors.yellow),
     ),
@@ -32,11 +36,15 @@ class AppTheme {
 
   static final ThemeData dark = ThemeData(
     brightness: Brightness.dark,
-    fontFamily: 'inter',
+    fontFamily: 'Inter',
     primaryColor: AppColors.primaryDark,
     scaffoldBackgroundColor: AppColors.backgroundDark,
     cardColor: AppColors.containerDark,
-    appBarTheme:  AppBarTheme(backgroundColor: AppColors.backgroundDark, foregroundColor: AppColors.primaryLight, scrolledUnderElevation: 0),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: AppColors.backgroundDark,
+      foregroundColor: AppColors.primaryLight,
+      scrolledUnderElevation: 0,
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(backgroundColor: AppColors.yellow),
     ),

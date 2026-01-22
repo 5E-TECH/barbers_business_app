@@ -1,8 +1,11 @@
-import 'package:bar_brons_app/role/barbershop/features/theme/bloc/theme_bloc.dart';
-import 'package:bar_brons_app/role/barbershop/splash_page.dart';
+import 'package:crown_cuts/pages/splash_screen.dart';
+import 'package:crown_cuts/role/barbershop/auth/logic/barbershop_auth_provider.dart';
+import 'package:crown_cuts/role/barbershop/barbers/logic/barbers_provider.dart';
+import 'package:crown_cuts/role/barbershop/barbers_schedule/logic/barber_schedule_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+
+import 'core/theme/app_colors.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,19 +17,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => ThemeBloc(),
-      child: BlocBuilder<ThemeBloc, ThemeState>(
-        builder: (context, state) {
-          return ScreenUtilInit(
-            designSize: const Size(360, 844),
-            child: MaterialApp(
-              theme: state.themeData,
-              debugShowCheckedModeBanner: false,
-              home: const SplashPageSlideUp(),
-            ),
-          );
-        },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => BarberShopAuthProvider()),
+        ChangeNotifierProvider(create: (_) => BarbersProvider()),
+        ChangeNotifierProvider(create: (_) => BarberScheduleProvider()),
+      ],
+      child: MaterialApp(
+        title: 'Crown Cuts',
+        theme: AppTheme.light,
+        themeMode: ThemeMode.light,
+        debugShowCheckedModeBanner: false,
+        home: const SplashScreen(),
       ),
     );
   }

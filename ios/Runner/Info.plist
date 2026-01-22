@@ -45,5 +45,15 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>We need access to your photo library to select shop images</string>
+    <key>NSCameraUsageDescription</key>
+    <string>We need access to your camera to take shop photos</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>We need your location to show your barbershop on the map</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>We need your location to show your barbershop on the map</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>We need your location to show your barbershop on the map</string>
 </dict>
 </plist>
